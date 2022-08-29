@@ -18,7 +18,7 @@ inputRef.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(event) {
   
-  if (event.target.value.trim() === '') {
+  if (event.target.value.trim() === ' ') {
     reset();
     return;
   }

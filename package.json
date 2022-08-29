@@ -2,7 +2,7 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://goitacademy.github.io/goit-js-hw-10",
+  "homepage": "https://github.com/Stereoboi/goit-js-hw-10",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-10/"
@@ -29,9 +29,5 @@
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead",
-  
-  "overrides": {
-    "trim-newlines": "^3.0.1"
-  }
+  "browserslist": "> 0.5%, last 2 versions, not dead"
 }

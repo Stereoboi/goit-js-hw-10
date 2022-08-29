@@ -18,9 +18,7 @@ function onSearch(event) {
     return;
   }
   let searchQuery = inputRef.value.trim();
-  fetchCountry(searchQuery).then(renderCountryCard).catch(error => {
-    
-  })
+  fetchCountry(searchQuery).then(renderCountryCard)
 }
 
 
@@ -52,24 +50,29 @@ function renderCountryCard(data) {
 }
 
 function singleMatchRender(data) {
+  console.log(data);
   const countryCardTpl = data.map(
-    ({ flags, name, capital, languages, population }) => {
-      const lang = Object.values(languages).join(', ');
-      return `<ul class="country_descr">
+    ({ flags, name, capital, languages, population, coatOfArms }) => {
+      const language = Object.values(languages).join(', ');
+      return `
+      <div class="country_card--wrapper" >
+      <ul class="country_descr">
         <li class="country_item country_item--main ">
             <img src="${flags.svg}" alt="${name}" class="country__flag" width="600">
             <h1 class="country__title">${name.common}</h1>
         </li>
         <li class="country_item">
-            <p class="country__text"><b>Capital:&emsp;</b><span class="text">${capital}</span></p>
+            <p class="country__text">Capital:<span class="text">${capital}</span></p>
         </li>
         <li class="country_item">
-            <p class="country__text"><b>Population:&emsp;</b><span class="text">${population}</span></p>
+            <p class="country__text">Population:<span class="text">${population}</span></p>
         </li>
         <li class="country_item">
-            <p class="country__text"><b>Languages:</b>${lang}</p>
+            <p class="country__text">Languages:<span class="text">${language}</span> </p>
         </li>
-        </ul>`;
+        </ul>
+        <img src="${coatOfArms.svg}" alt="${name}" class="country__coat" width="600">
+      </div>`;
     }
   );
   countryInfoRef.innerHTML = countryCardTpl;
@@ -77,14 +80,12 @@ function singleMatchRender(data) {
 
 function fewMatchesRender(data) {
   const countryListTpl = data.map(({ flags, name }) => {
-      return `<div class="countries">
-    <ul class="countries__list">
+      return `
         <li class="countries__item--list">
           <img src="${flags.svg}" alt="${name.common}" class="countries__flag--list">
           <p class="text countries__name">${name.common}</p>
         </li>
-    </ul>
-    </div>`;
+    `;
     })
     .join('');
   countryListRef.innerHTML = countryListTpl;

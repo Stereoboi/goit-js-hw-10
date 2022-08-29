@@ -29,5 +29,9 @@
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  
+  "overrides": {
+    "trim-newlines": "^3.0.1"
+  }
 }

@@ -2,14 +2,13 @@ import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
 import debounce from 'lodash.debounce';
 import './css/styles.css';
-const DEBOUNCE_DELAY = 300;
+import getRefs from './getRefs';
 import fetchCountry from '../src/fetchCountryData'
-const inputRef = document.querySelector('#search-box');
-const countryInfoRef = document.querySelector('.country-info');
-const countryListRef = document.querySelector('.country-list');
+const DEBOUNCE_DELAY = 300;
 
+const refs = getRefs();
 
-inputRef.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+refs.inputRef.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(event) {
   
@@ -17,7 +16,7 @@ function onSearch(event) {
     reset();
     return;
   }
-  let searchQuery = inputRef.value.trim();
+  let searchQuery = refs.inputRef.value.trim();
   fetchCountry(searchQuery).then(renderCountryCard)
 }
 
@@ -37,7 +36,6 @@ function renderCountryCard(data) {
     Notiflix.Notify.info(`Too many matches found. Please enter a more specific name.`);
     return;
   }
-    // const markupOfList = countryListTpl(data)
   
     if (searchInfo >= 2 && searchInfo <= 10) {
     reset();
@@ -50,7 +48,6 @@ function renderCountryCard(data) {
 }
 
 function singleMatchRender(data) {
-  console.log(data);
   const countryCardTpl = data.map(
     ({ flags, name, capital, languages, population, coatOfArms }) => {
       const language = Object.values(languages).join(', ');
@@ -75,25 +72,22 @@ function singleMatchRender(data) {
       </div>`;
     }
   );
-  countryInfoRef.innerHTML = countryCardTpl;
+  refs.countryInfoRef.innerHTML = countryCardTpl;
 }
 
 function fewMatchesRender(data) {
-  const countryListTpl = data.map(({ flags, name }) => {
+  const countryListTpl = data.map(chosenCountry => {
       return `
         <li class="countries__item--list">
-          <img src="${flags.svg}" alt="${name.common}" class="countries__flag--list">
-          <p class="text countries__name">${name.common}</p>
-        </li>
-    `;
-    })
-    .join('');
-  countryListRef.innerHTML = countryListTpl;
+          <img src="${chosenCountry.flags.svg}" alt="${chosenCountry.name.common}" class="countries__flag--list">
+          <p class="text countries__name">${chosenCountry.name.common}</p>
+        </li>`;}) .join('');
+  refs.countryListRef.innerHTML = countryListTpl;
 }
 
 
 function reset() {
-  countryListRef.innerHTML = '';
-  countryInfoRef.innerHTML = '';
+  refs.countryListRef.innerHTML = '';
+  refs.countryInfoRef.innerHTML = '';
 }
   

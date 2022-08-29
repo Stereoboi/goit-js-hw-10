@@ -54,7 +54,7 @@ img {
 .countries__item--list {
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-left: 530px;
 }
 
 .country_card--wrapper {
@@ -76,7 +76,7 @@ img {
 .text{
   font-weight: normal;
   margin-left: 5px;
-  font-style: italic;
+  
 }
 
 .country-info{

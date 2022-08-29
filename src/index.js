@@ -81,7 +81,8 @@ function fewMatchesRender(data) {
         <li class="countries__item--list">
           <img src="${chosenCountry.flags.svg}" alt="${chosenCountry.name.common}" class="countries__flag--list">
           <p class="text countries__name">${chosenCountry.name.common}</p>
-        </li>`;}) .join('');
+        </li>`;})
+.join('');
   refs.countryListRef.innerHTML = countryListTpl;
 }
 

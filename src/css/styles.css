@@ -54,7 +54,7 @@ img {
 .countries__item--list {
   display: flex;
   align-items: center;
-  margin-left: 530px;
+  
 }
 
 .country_card--wrapper {
@@ -79,16 +79,6 @@ img {
   
 }
 
-.country-info{
-  display: flex;
-  justify-content: center;
-}
-
-.input{
-  display: flex;
-  margin-right: auto;
-  margin-left: auto;
-}
 
 .countries__name {
   font-weight: bold;
